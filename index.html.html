@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hari ❤️</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
+html,body{height:100%}
+body{
+  background:#f3f4f6;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  color:#111827;
+}
+body.romantic-bg{
+  background:radial-gradient(circle,#5c0623 0,#080007 70%);
+  color:#ffe6f5;
+}
+body.outro-mode{
+  background:#000;
+  color:#fff;
+}
+
+/* Global rose layer */
+#roseLayer{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:0;
+}
+
+/* Gate overlay after password success */
+.gate-overlay{
+  position:fixed;
+  inset:0;
+  display:none;
+  z-index:20;
+  pointer-events:none;
+}
+.gate-overlay.show{display:block;}
+.gate-panel{
+  position:absolute;
+  top:0;
+  width:50%;
+  height:100%;
+  background:radial-gradient(circle at top,#2b0210 0,#050008 70%);
+}
+.gate-panel.left{
+  left:0;
+  animation:gateLeftOpen 1.6s ease forwards;
+  animation-delay:.25s;
+}
+.gate-panel.right{
+  right:0;
+  animation:gateRightOpen 1.6s ease forwards;
+  animation-delay:.25s;
+}
+@keyframes gateLeftOpen{
+  from{transform:translateX(0);}
+  to{transform:translateX(-100%);}
+}
+@keyframes gateRightOpen{
+  from{transform:translateX(0);}
+  to{transform:translateX(100%);}
+}
+.gate-text{
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  text-align:center;
+  color:#ffe4f2;
+  font-size:.9rem;
+  opacity:0;
+  animation:gateTextFade 1.2s ease forwards;
+}
+.gate-text span{
+  font-size:1.05rem;
+  letter-spacing:.08em;
+}
+@keyframes gateTextFade{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.95);}
+  40%{opacity:1;}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(1.02);}
+}
+
+/* Lock / destroy overlay */
+#lockOverlay{
+  position:fixed;
+  inset:0;
+  background:#000;
+  color:#fff;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  z-index:30;
+  padding:20px;
+}
+#lockOverlay.show{display:flex;}
+#lockOverlay p{font-size:.95rem;line-height:1.6;}
+
+/* Main container */
+.container{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:420px;
+  height:100%;
+  display:flex;
+}
+
+/* Screens */
+.screen{
+  display:none;
+  width:100%;
+  height:100%;
+  justify-content:center;
+  align-items:center;
+}
+.screen.active{display:flex}
+
+/* ---------- PROFESSIONAL EDUCATION ---------- */
+.edu-shell{
+  background:#ffffff;
+  border-radius:18px;
+  padding:18px;
+  width:100%;
+  height:100%;
+  box-shadow:0 14px 40px rgba(15,23,42,.15);
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+.edu-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.edu-logo{
+  font-weight:800;
+  font-size:1.1rem;
+  color:#1d4ed8;
+}
+.edu-logo span{color:#f97316;}
+.edu-nav{
+  display:flex;
+  gap:10px;
+  font-size:.8rem;
+  color:#4b5563;
+}
+.edu-nav span{
+  padding:4px 8px;
+  border-radius:999px;
+  cursor:pointer;
+}
+.edu-nav span:hover{
+  background:#eff6ff;
+}
+.edu-hero{
+  display:grid;
+  grid-template-columns:1.1fr 1fr;
+  gap:12px;
+  align-items:flex-start;
+}
+.edu-tag{
+  display:inline-block;
+  font-size:.7rem;
+  text-transform:uppercase;
+  letter-spacing:.09em;
+  padding:3px 8px;
+  border-radius:999px;
+  background:#eff6ff;
+  color:#1d4ed8;
+  margin-bottom:6px;
+  font-weight:600;
+}
+.edu-title{
+  font-size:1.25rem;
+  font-weight:700;
+  margin-bottom:4px;
+}
+.edu-sub{
+  font-size:.82rem;
+  color:#4b5563;
+  margin-bottom:8px;
+}
+.edu-cta{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  align-items:center;
+}
+.btn-edu-primary{
+  border:none;
+  padding:7px 14px;
+  border-radius:999px;
+  background:linear-gradient(135deg,#1d4ed8,#2563eb);
+  color:#fff;
+  font-size:.8rem;
+  font-weight:600;
+  cursor:pointer;
+  box-shadow:0 8px 20px rgba(37,99,235,.4);
+}
+.edu-note{
+  font-size:.72rem;
+  color:#6b7280;
+}
+.edu-card{
+  background:radial-gradient(circle at top,#eff6ff 0,#f9fafb 60%);
+  border-radius:14px;
+  padding:10px;
+  border:1px solid #e5e7eb;
+  font-size:.78rem;
+  color:#374151;
+}
+.edu-card h3{
+  font-size:.85rem;
+  margin-bottom:4px;
+}
+.edu-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  font-size:.75rem;
+}
+.edu-box{
+  border-radius:10px;
+  border:1px solid #e5e7eb;
+  padding:7px 8px;
+  background:#f9fafb;
+  color:#4b5563;
+}
+.edu-box h4{
+  margin-bottom:3px;
+  font-size:.8rem;
+  color:#111827;
+}
+.edu-footer{
+  font-size:.7rem;
+  color:#9ca3af;
+  display:flex;
+  justify-content:space-between;
+  gap:6px;
+  flex-wrap:wrap;
+}
+#studentPortal{
+  font-weight:700;
+  color:#1d4ed8;
+  cursor:pointer;
+  position:relative;
+}
+#studentPortal::after{
+  content:"";
+  position:absolute;
+  bottom:-2px;left:0;right:0;
+  height:1px;
+  background:rgba(37,99,235,.5);
+}
+
+/* ---------- PASSWORD ---------- */
+.password-overlay{
+  position:fixed;inset:0;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  background:rgba(0,0,0,.65);
+  z-index:10;
+}
+.password-overlay.show{display:flex}
+.pw-card{
+  background:#0b0214;
+  color:white;
+  padding:20px;
+  border-radius:18px;
+  text-align:center;
+  width:90%;max-width:300px;
+  box-shadow:0 18px 45px rgba(0,0,0,.7);
+}
+.input{
+  width:100%;padding:10px;margin-top:10px;
+  border-radius:20px;border:none;
+  text-align:center;
+}
+.btn{
+  padding:10px 20px;border:none;
+  border-radius:20px;margin-top:12px;
+  cursor:pointer;
+}
+.btn-primary{
+  background:linear-gradient(135deg,#ff3b6b,#ff8b3d);
+  color:white;
+}
+.error{color:#ff6b81;font-size:12px;margin-top:6px}
+
+/* ---------- MAIN (ROMANTIC) ---------- */
+.title-main{
+  font-size:2.7rem;
+  letter-spacing:.25em;
+  font-weight:900;
+  text-align:center;
+}
+.heart{color:#ff4b7c}
+.romantic-card{
+  background:rgba(0,0,0,.45);
+  border-radius:24px;
+  padding:18px;
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:14px;
+  box-shadow:0 18px 55px rgba(0,0,0,.75);
+}
+.simple-frame{
+  border:2px solid gold;
+  border-radius:20px;
+  padding:14px;
+  height:50vh;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:radial-gradient(circle at top,#4b0015 0,#120007 85%);
+}
+.message-text{
+  text-align:center;
+  color:#ffeefc;
+  font-size:.9rem;
+  line-height:1.5;
+  max-height:100%;
+  overflow-y:auto;
+  padding-right:4px;
+}
+.nav-buttons{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  margin-top:10px;
+}
+
+/* ---------- HUG (HEAVY ROSEFALL) ---------- */
+#hugScreen{
+  align-items:stretch;
+  justify-content:stretch;
+}
+.hug-wrapper{
+  width:100%;
+  height:100%;
+  position:relative;
+}
+.hug-card{
+  position:relative;
+  width:100%;height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  background:rgba(0,0,0,.55);
+  border-radius:24px;
+  margin:auto;
+  max-width:380px;
+}
+.hug-emoji{
+  font-size:5rem;
+  margin-bottom:8px;
+}
+.hug-hint{
+  font-size:.8rem;
+  opacity:.85;
+}
+
+/* ---------- ROSE PARTICLES ---------- */
+.rose-drop{
+  position:absolute;
+  top:-10%;
+  font-size:1.6rem;
+  opacity:0.9;
+  animation:fall 6s linear infinite;
+}
+@keyframes fall{
+  to{transform:translateY(120vh);}
+}
+
+/* ---------- OUTRO (LAST PAGE) ---------- */
+#outroScreen{
+  align-items:center;
+  justify-content:center;
+}
+.outro-inner{
+  text-align:center;
+  color:#fff;
+}
+.outro-inner .title-main{
+  color:#ff1b3d;
+  text-shadow:0 0 18px rgba(255,0,60,1);
+}
+
+/* Animated romantic text */
+.fade-text span{
+  display:block;
+  opacity:0;
+  animation:fade 1.5s forwards;
+}
+.fade-text span:nth-child(1){animation-delay:.6s}
+.fade-text span:nth-child(2){animation-delay:2s}
+.fade-text span:nth-child(3){animation-delay:3.4s}
+.fade-text span:nth-child(4){animation-delay:5s}
+@keyframes fade{to{opacity:1}}
+</style>
+</head>
+
+<body>
+
+<!-- Global rose layer (hug + outro) -->
+<div id="roseLayer"></div>
+
+<!-- Gate overlay -->
+<div id="gateOverlay" class="gate-overlay">
+  <div class="gate-panel left"></div>
+  <div class="gate-panel right"></div>
+  <div class="gate-text">
+    Access granted...<br>
+    <span>Welcome to Hari's world ❤️</span>
+  </div>
+</div>
+
+<!-- Lock / Destroy overlay -->
+<div id="lockOverlay">
+  <p id="lockMessage">
+    Access to this surprise is locked.<br><br>
+    Too many wrong attempts.
+  </p>
+</div>
+
+<div class="container">
+
+  <!-- EDUCATION -->
+  <div id="eduScreen" class="screen active">
+    <div class="edu-shell">
+      <div class="edu-header">
+        <div class="edu-logo">Bright<span>Step</span></div>
+        <div class="edu-nav">
+          <span>Courses</span>
+          <span>Results</span>
+          <span>Contact</span>
+          <span id="studentPortal">HD</span>
+        </div>
+      </div>
+
+      <div class="edu-hero">
+        <div>
+          <div class="edu-tag">JEE • NEET • BOARDS</div>
+          <div class="edu-title">Structured coaching for serious students.</div>
+          <div class="edu-sub">
+            Live classes, doubt solving, test series and detailed mentoring to keep you ahead in every exam.
+          </div>
+          <div class="edu-cta">
+            <button class="btn-edu-primary">Download Brochure</button>
+            <span class="edu-note">Next batch starting soon • Limited seats</span>
+          </div>
+        </div>
+        <div class="edu-card">
+          <h3>Today’s Highlights</h3>
+          <p>Physics (Ray Optics) · 5:00–6:30 PM</p>
+          <p>Chemistry (Chemical Kinetics) · 7:00–8:00 PM</p>
+          <p>Daily practice sheets uploaded after 9:30 PM.</p>
+        </div>
+      </div>
+
+      <div class="edu-grid">
+        <div class="edu-box">
+          <h4>Live + Recorded</h4>
+          <p>Attend live or re-watch any class with full recording access.</p>
+        </div>
+        <div class="edu-box">
+          <h4>Test Series</h4>
+          <p>Chapter-wise, part tests and full syllabus mock tests every week.</p>
+        </div>
+        <div class="edu-box">
+          <h4>Mentorship</h4>
+          <p>Personalised guidance on timetable, strategy and doubt planning.</p>
+        </div>
+        <div class="edu-box">
+          <h4>Study Material</h4>
+          <p>Handwritten notes, PYQs and DPPs in downloadable PDF format.</p>
+        </div>
+      </div>
+
+      <div class="edu-footer">
+        <span>© BrightStep Institute • Since 2016</span>
+        <span>Helpline: +91-98XX-XXX-XXX</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div id="mainScreen" class="screen">
+    <div class="romantic-card">
+      <div class="title-main">HARI <span class="heart">❤️</span></div>
+
+      <button id="openBtn" class="btn btn-primary">Open Message</button>
+
+      <div id="messageArea" style="display:none;width:100%">
+        <div class="simple-frame">
+          <div id="messageText" class="message-text"></div>
+        </div>
+
+        <div class="nav-buttons">
+          <button id="prevBtn" class="btn">Prev</button>
+          <button id="nextBtn" class="btn btn-primary">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HUG (HEAVY ROSEFALL) -->
+  <div id="hugScreen" class="screen">
+    <div class="hug-wrapper">
+      <div class="hug-card">
+        <div class="hug-emoji">🌹</div>
+        <p class="hug-hint">Tap anywhere</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTRO (LAST PAGE + LIGHT ROSEFALL) -->
+  <div id="outroScreen" class="screen">
+    <div class="outro-inner">
+      <div class="title-main">HARI ❤️</div>
+      <div class="fade-text">
+        <span>You are the <b>pearl of my eyes</b>,</span>
+        <span>you are my <b>universe</b>,</span>
+        <span>you are my <b>everything</b>…</span>
+        <span style="color:#ff4b7c;"><b>GADHI ❤️</b></span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- PASSWORD -->
+<div id="passwordOverlay" class="password-overlay">
+  <div class="pw-card">
+    <div>ENTER PASSWORD</div>
+    <input id="passwordInput" class="input" type="password" placeholder="Type here">
+    <button id="passwordBtn" class="btn btn-primary">Unlock</button>
+    <div id="passwordError" class="error"></div>
+  </div>
+</div>
+
+<script>
+// ---------- "Hidden" password generator ----------
+function getSecretPassword(){
+  // 1400 * 2 + 7 = 2807
+  return String(1400*2 + 7);
+}
+
+// ---------- Expiry time: Sunday raat 12 baje ----------
+const EXPIRY_TIME = new Date("2025-12-08T00:00:00+05:30");
+
+// DOM references
+const eduScreen=document.getElementById("eduScreen");
+const mainScreen=document.getElementById("mainScreen");
+const hugScreen=document.getElementById("hugScreen");
+const outroScreen=document.getElementById("outroScreen");
+
+const studentPortal=document.getElementById("studentPortal");
+const passwordOverlay=document.getElementById("passwordOverlay");
+const passwordInput=document.getElementById("passwordInput");
+const passwordBtn=document.getElementById("passwordBtn");
+const passwordError=document.getElementById("passwordError");
+
+const openBtn=document.getElementById("openBtn");
+const messageArea=document.getElementById("messageArea");
+const messageText=document.getElementById("messageText");
+const prevBtn=document.getElementById("prevBtn");
+const nextBtn=document.getElementById("nextBtn");
+const roseLayer=document.getElementById("roseLayer");
+const gateOverlay=document.getElementById("gateOverlay");
+const lockOverlay=document.getElementById("lockOverlay");
+const lockMessage=document.getElementById("lockMessage");
+
+let attempts = 0;
+let isLocked = false;
+let isExpired = false;
+
+const pages=[
+  `Hd, I know jada kuch nahi kar paye hum iss special day par jo mera favourite day h, but situation bhi kuch yesa hi h, tum tho jaanti hi hogi. <br><br>
+   Ye website banana may hi 2 night lag gaya, hum kitna bhi kar le kam hi hoga, itna chahte h tumko. Jab ye note hum likh rhe h, pata nahi koi gift de bhi payege ya nahi, but apna best try karege hamesha jaise. <br><br>
+   Maybe hum kafi na ho but kasam se pari, ek ek chiz jo kar sakte h risk ke saath sab kar rahe h. Soche the pichli baar ki bhut acha acha karege but kismet yesa situation may daal diya pari.`,
+  `Ar na jada online aati h, na jada jaldi reply deti h. Iske karan mera itna tension and overthinking badh jata h, lagta h tumko koi pasand aagya. <br><br>
+   Issliye humko note mile na mile, tum koi note diye ho ya na diye ho, koi fark nahi padta tumko — warna tum usko force karti, excited rheti, wait karti jaisa humko rehta h. <br><br>
+   But kya hi bole ab ispe, koi baat nahi yaar. Aaj ka din mere liye sabse kaash h. Abhi tum kya pehni hogi, kon aaya hoga, kon nahi aaya hoga, nahi pata humko. Maybe jab pata chale tho bas bathroom may jake hum roo de, aur kuch kar bhi nahi sakte h.`,
+  `If possible sunday ko AR ke ghar project ya koi bhi bahana se, project hi sahi, se nikal ke baat kar lena. Insta pe uss din boli na AR na number hoga copy ya dairy may, tab nahi kuch laga but ab lag rha. <br><br>
+   Aur kiska kiska number h, number hoga kya pata, hum isme kuch nahi kar sakte h. Sab tumhare loyalty or commitment pe depend karta h. <br><br>
+   But waisa phele jaisa kuch bhi hua, kasam se, main jayege nahi dekhne fir mera muh kabhi tum.`,
+  `Aree yaar, maaf kardo. Aaj ke din bhi ye sab bol diye, but bas tum hi samajhti h pari ki bhut kuch bolna rehta h humko, but baat nahi ho pata h tho kahan hi bolte. Mera overthinking ke karan hi ye sab hota h, please maaf kardo yaar. <br><br>
+   Btw meri gadhi, jada mat udo, aaj mera birthday h samjhi na. Tho mere liye please apna dhyan rakhna, meri pyaari wifeyyyy. Aur ek baat, aaj sunday ko jo test h maybe hum na diye ho, you know. <br><br>
+   Ye note likhte likhte bhi dar lag rha h ki kon kon wish kiya hoga, kisko kisko reply di hogi. Maaf kardo yaar. Ho sake tho apna khyal rakhna. Situation jaisi bhi ho, milege tho humlog kabhi na kabhi jarur, and tab koi kuch nahi kar payega — bas tab hi jab humlog dono may se koi himmatt na hare tab. <br><br>
+   <b>Bie<br>HARI.</b>`
+];
+let currentPage=0;
+
+// Expiry check on load
+document.addEventListener("DOMContentLoaded", () => {
+  const now = new Date();
+  if(now.getTime() >= EXPIRY_TIME.getTime()){
+    expireSite();
+  }
+});
+
+// Disable right-click + common inspect shortcuts
+document.addEventListener("contextmenu", (e)=> e.preventDefault());
+document.addEventListener("keydown", (e)=>{
+  if(
+    (e.ctrlKey && ['u','U','s','S','p','P'].includes(e.key)) || // Ctrl+U etc
+    e.key === 'F12' ||
+    (e.ctrlKey && e.shiftKey && ['I','i','J','j','C','c'].includes(e.key))
+  ){
+    e.preventDefault();
+    e.stopPropagation();
+  }
+});
+
+/* EXPIRE SITE COMPLETELY (after Sunday) */
+function expireSite(){
+  isExpired = true;
+  roseLayer.innerHTML = "";
+  lockMessage.innerHTML = "This surprise is no longer available.<br><br>– HARI";
+  lockOverlay.classList.add("show");
+}
+
+// Lock after wrong attempts
+function lockSite(){
+  isLocked = true;
+  roseLayer.innerHTML="";
+  passwordOverlay.classList.remove("show");
+  lockMessage.innerHTML = "Access to this surprise is locked.<br><br>Too many wrong attempts.";
+  lockOverlay.classList.add("show");
+}
+
+/* ✅ DOUBLE CLICK FOR PASSWORD */
+studentPortal.ondblclick=()=>{
+  if(isLocked || isExpired) return;
+  passwordOverlay.classList.add("show");
+};
+
+/* Password check with attempts */
+passwordBtn.onclick=()=>{
+  if(isLocked || isExpired) return;
+  const entered = passwordInput.value.trim();
+  if(entered === getSecretPassword()){
+    passwordError.textContent="";
+    passwordOverlay.classList.remove("show");
+    document.body.classList.add("romantic-bg");
+    setScreen(mainScreen);
+
+    // trigger gate animation
+    if(gateOverlay){
+      gateOverlay.classList.remove("show");
+      void gateOverlay.offsetWidth; // reset animation
+      gateOverlay.classList.add("show");
+      setTimeout(()=>{gateOverlay.classList.remove("show");},1900);
+    }
+  }else{
+    attempts++;
+    passwordError.textContent="Wrong password";
+    if(attempts >= 4){
+      lockSite(); // destroy secret after 4 wrong tries
+    }
+  }
+};
+
+/* MAIN FLOW */
+openBtn.onclick=()=>{
+  if(isLocked || isExpired) return;
+  messageArea.style.display="block";
+  currentPage=0;
+  renderPage();
+};
+
+function renderPage(){
+  messageText.innerHTML=pages[currentPage];
+  prevBtn.disabled=currentPage===0;
+  nextBtn.textContent=currentPage===pages.length-1?"Continue":"Next";
+}
+
+prevBtn.onclick=()=>{
+  if(isLocked || isExpired) return;
+  if(currentPage>0){
+    currentPage--;
+    renderPage();
+  }
+};
+
+nextBtn.onclick=()=>{
+  if(isLocked || isExpired) return;
+  if(currentPage<pages.length-1){
+    currentPage++;
+    renderPage();
+  }else{
+    setScreen(hugScreen);
+  }
+};
+
+/* HUG SCREEN TAP => LAST PAGE */
+hugScreen.onclick=()=>{
+  if(isLocked || isExpired) return;
+  setScreen(outroScreen);
+};
+
+/* Screen switch + rose control */
+function setScreen(scr){
+  [eduScreen,mainScreen,hugScreen,outroScreen].forEach(x=>x.classList.remove("active"));
+  scr.classList.add("active");
+
+  document.body.classList.toggle("outro-mode",scr===outroScreen);
+
+  if(scr===hugScreen){
+    startRoseRain("hug");
+  }else if(scr===outroScreen){
+    startRoseRain("outro");
+  }else{
+    roseLayer.innerHTML="";
+  }
+}
+
+/* Rose rain for hug + outro */
+function startRoseRain(mode){
+  roseLayer.innerHTML="";
+  let totalRoses = mode==="hug" ? 26 : 10; // heavy on hug, light on outro
+
+  for(let i=0;i<totalRoses;i++){
+    const r=document.createElement("span");
+    r.className="rose-drop";
+    r.textContent="🌹";
+    r.style.left=Math.random()*100+"%";
+    r.style.animationDuration=(3+Math.random()*4)+"s";
+    r.style.animationDelay=(Math.random()*3)+"s";
+    roseLayer.appendChild(r);
+  }
+}
+</script>
+
+</body>
+</html>
